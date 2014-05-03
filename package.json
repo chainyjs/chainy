@@ -1,0 +1,19 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "highland": "^1.24.0",
+    "hyperquest": "^0.3.0",
+    "request": "^2.34.0",
+    "feedr": "^2.8.0",
+    "ambi": "^2.1.6",
+    "lodash.flatten": "^2.4.1"
+  }
+}
