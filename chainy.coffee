@@ -4,24 +4,34 @@ debug = ->
 class Chainy
 	data: null
 	runner: null
+	parent: null
 
-	constructor: ->
+	constructor: (opts) ->
 		@data = null
-		@runner = TaskGroup.create().run().on 'complete', (err) ->
+
+		@runner = TaskGroup.create(opts).run().on 'complete', (err) ->
 			console.log('error:', err)  if err
+
 		@
 
-	fork: ->
-		_ = Chainy.create()
+	fork: (opts) ->
+		_ = Chainy.create(opts)
+		_.parent = @
 		_.data = JSON.parse JSON.stringify @data
 		return _
 
+	on: (args...) ->
+		@runner.on.apply(@runner, args)
+		@
+
+	done: (cb) ->
+		me = @
+		@once 'complete', (err) ->
+			return complete.call(me, err, me.data)
+		@
+
 	@create: ->
 		return new Chainy()
-
-	@use: (pluginAddMethod) ->
-		pluginAddMethod(@)
-		@
 
 	@addPlugin: (name, method) ->
 		@::[name] = (args...) ->
