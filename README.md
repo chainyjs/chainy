@@ -7,10 +7,10 @@
 
 <!-- BADGES/ -->
 
-[![Build Status](http://img.shields.io/travis-ci/bevry/taskgroup.png?branch=master)](http://travis-ci.org/bevry/taskgroup "Check this project's build status on TravisCI")
-[![NPM version](http://badge.fury.io/js/taskgroup.png)](https://npmjs.org/package/taskgroup "View this project on NPM")
-[![Dependency Status](https://david-dm.org/bevry/taskgroup.png?theme=shields.io)](https://david-dm.org/bevry/taskgroup)
-[![Development Dependency Status](https://david-dm.org/bevry/taskgroup/dev-status.png?theme=shields.io)](https://david-dm.org/bevry/taskgroup#info=devDependencies)<br/>
+[![Build Status](http://img.shields.io/travis-ci/bevry/chainy.png?branch=master)](http://travis-ci.org/bevry/chainy "Check this project's build status on TravisCI")
+[![NPM version](http://badge.fury.io/js/chainy.png)](https://npmjs.org/package/chainy "View this project on NPM")
+[![Dependency Status](https://david-dm.org/bevry/chainy.png?theme=shields.io)](https://david-dm.org/bevry/chainy)
+[![Development Dependency Status](https://david-dm.org/bevry/chainy/dev-status.png?theme=shields.io)](https://david-dm.org/bevry/chainy#info=devDependencies)<br/>
 [![Gittip donate button](http://img.shields.io/gittip/bevry.png)](https://www.gittip.com/bevry/ "Donate weekly to this project using Gittip")
 [![Flattr donate button](http://img.shields.io/flattr/donate.png?color=yellow)](http://flattr.com/thing/344188/balupton-on-Flattr "Donate monthly to this project using Flattr")
 [![PayPayl donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QB8GQPZAH84N6 "Donate once-off to this project using Paypal")
@@ -22,7 +22,7 @@
 
 <!-- DESCRIPTION/ -->
 
-Group together synchronous and asynchronous tasks and execute them with support for concurrency, naming, and nesting.
+Perhaps the most awesome way of interacting with data using a chainable API
 
 <!-- /DESCRIPTION -->
 
@@ -32,8 +32,8 @@ Group together synchronous and asynchronous tasks and execute them with support 
 ## Install
 
 ### [NPM](http://npmjs.org/)
-- Use: `require('taskgroup')`
-- Install: `npm install --save taskgroup`
+- Use: `require('chainy')`
+- Install: `npm install --save chainy`
 
 <!-- /INSTALL -->
 
@@ -48,7 +48,7 @@ Group together synchronous and asynchronous tasks and execute them with support 
 <!-- HISTORY/ -->
 
 ## History
-[Discover the change history by heading on over to the `HISTORY.md` file.](https://github.com/bevry/taskgroup/blob/master/HISTORY.md#files)
+[Discover the change history by heading on over to the `HISTORY.md` file.](https://github.com/bevry/chainy/blob/master/HISTORY.md#files)
 
 <!-- /HISTORY -->
 
@@ -57,7 +57,7 @@ Group together synchronous and asynchronous tasks and execute them with support 
 
 ## Contribute
 
-[Discover how you can contribute by heading on over to the `CONTRIBUTING.md` file.](https://github.com/bevry/taskgroup/blob/master/CONTRIBUTING.md#files)
+[Discover how you can contribute by heading on over to the `CONTRIBUTING.md` file.](https://github.com/bevry/chainy/blob/master/CONTRIBUTING.md#files)
 
 <!-- /CONTRIBUTE -->
 
@@ -86,12 +86,9 @@ No sponsors yet! Will you be the first?
 
 These amazing people have contributed code to this project:
 
-- [Benjamin Lupton](https://github.com/balupton) <b@lupton.cc> — [view contributions](https://github.com/bevry/taskgroup/commits?author=balupton)
-- [crito](https://github.com/crito) — [view contributions](https://github.com/bevry/taskgroup/commits?author=crito)
-- [pflannery](https://github.com/pflannery) — [view contributions](https://github.com/bevry/taskgroup/commits?author=pflannery)
-- [sfrdmn](https://github.com/sfrdmn) — [view contributions](https://github.com/bevry/taskgroup/commits?author=sfrdmn)
+- [Benjamin Lupton](https://github.com/balupton) <b@lupton.cc> — [view contributions](https://github.com/bevry/chainy/commits?author=balupton)
 
-[Become a contributor!](https://github.com/bevry/taskgroup/blob/master/CONTRIBUTING.md#files)
+[Become a contributor!](https://github.com/bevry/chainy/blob/master/CONTRIBUTING.md#files)
 
 <!-- /BACKERS -->
 
@@ -102,8 +99,7 @@ These amazing people have contributed code to this project:
 
 Licensed under the incredibly [permissive](http://en.wikipedia.org/wiki/Permissive_free_software_licence) [MIT license](http://creativecommons.org/licenses/MIT/)
 
-Copyright &copy; 2013+ Bevry Pty Ltd <us@bevry.me> (http://bevry.me)
-<br/>Copyright &copy; 2011-2012 Benjamin Lupton <b@lupton.cc> (http://balupton.com)
+Copyright &copy; 2014+ Bevry Pty Ltd <us@bevry.me> (http://bevry.me)
 
 <!-- /LICENSE -->
 
