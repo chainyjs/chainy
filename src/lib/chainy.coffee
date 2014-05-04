@@ -1,7 +1,10 @@
 {Task, TaskGroup} = require('taskgroup')
+{extendOnClass} = require('extendonclass')
 debug = ->
 
 class Chainy
+	@extend: extendOnClass
+
 	data: null
 	runner: null
 	parent: null

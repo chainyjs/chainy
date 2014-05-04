@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "ambi": "~2.1.5",
-    "extendonclass": "~1.0.0",
+    "extendonclass": "^1.0.0",
     "taskgroup": "^3.3.9",
     "lodash.flatten": "^2.4.1",
     "feedr": "^2.8.0"
