@@ -1,19 +1,70 @@
 {
+  "title": "Chainy",
   "name": "chainy",
-  "version": "0.0.1",
-  "description": "",
-  "main": "chainy.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.1.0",
+  "description": "Perhaps the most awesome way of interacting with data using a chainable API",
+  "homepage": "https://github.com/bevry/chainy",
+  "license": {
+    "type": "MIT"
   },
-  "author": "",
-  "license": "ISC",
+  "badges": {
+    "travis": true,
+    "npm": true,
+    "david": true,
+    "daviddev": true,
+    "gittip": "bevry",
+    "flattr": "344188/balupton-on-Flattr",
+    "paypal": "QB8GQPZAH84N6",
+    "bitcoin": "https://coinbase.com/checkouts/9ef59f5479eec1d97d63382c9ebcb93a",
+    "wishlist": "http://amzn.com/w/2F8TXKSNAFG4V"
+  },
+  "keywords": [
+    "flow",
+    "control",
+    "async",
+    "sync",
+    "tasks",
+    "batch",
+    "concurrency",
+    "data"
+  ],
+  "author": "2014+ Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
+  "maintainers": [
+    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
+  ],
+  "contributors": [
+    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
+  ],
+  "bugs": {
+    "url": "https://github.com/bevry/chainy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/bevry/chainy.git"
+  },
+  "engines": {
+    "node": ">=0.4"
+  },
   "dependencies": {
-    "highland": "^1.24.0",
-    "hyperquest": "^0.3.0",
-    "request": "^2.34.0",
-    "feedr": "^2.8.0",
-    "ambi": "^2.1.6",
-    "lodash.flatten": "^2.4.1"
-  }
+    "ambi": "~2.1.5",
+    "extendonclass": "~1.0.0",
+    "taskgroup": "^3.3.9",
+    "lodash.flatten": "^2.4.1",
+    "feedr": "^2.8.0"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.7.1",
+    "joe": "~1.4.0",
+    "joe-reporter-console": "~1.2.1",
+    "chai": "~1.9.1",
+    "projectz": "~0.3.11"
+  },
+  "directories": {
+    "lib": "./out/lib"
+  },
+  "scripts": {
+    "preinstall": "node ./cyclic.js",
+    "test": "node ./out/test/chainy-test.js"
+  },
+  "main": "./out/lib/chainy.js"
 }

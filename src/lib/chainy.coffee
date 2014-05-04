@@ -1,4 +1,4 @@
-{Task, TaskGroup} = require('TaskGroup')
+{Task, TaskGroup} = require('taskgroup')
 debug = ->
 
 class Chainy
@@ -140,55 +140,4 @@ Chainy.addPlugin 'request', (method, next) ->
 			next()
 	@
 
-Chainy.create()
-	.add(['bevry','browserstate','ideashare','interconnectapp','docpad'])
-
-	.request (org) ->
-		return "https://api.github.com/orgs/#{org}/public_members"
-
-	.flatten().count()
-
-	.removeDuplicates('id').count()
-
-	.request (user) ->
-		return user.url
-
-	.hasField('location').count()
-
-	.map (user, complete) ->
-		Chainy.create()
-			.add([user])
-			.request (user) ->
-				return "https://api.tiles.mapbox.com/v3/examples.map-zr0njcqy/geocode/#{user.location}.json"
-			.map (geo) ->
-				result = geo.results[0][0]
-				user.coordinates = [result.lon, result.lat]  if result
-				return geo
-			.fn -> complete(null, user)
-
-	.hasField('coordinates').count()
-
-	.map (user) ->
-		return {
-			type: 'Feature'
-			properties:
-				githubUsername: user.login
-			geometry:
-				type: 'Point'
-				coordinates: user.coordinates
-		}
-
-	.replace (data) ->
-		return {
-			type: 'FeatureCollection'
-			features: data
-		}
-
-	.log()
-
-	.replace (data) ->
-		JSON.stringify(data, null, '\t')
-
-	.pipe(
-		require('fs').createWriteStream('./out.geojson')
-	)
+module.exports = Chainy
