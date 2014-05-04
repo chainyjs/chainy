@@ -1,6 +1,6 @@
 {Task, TaskGroup} = require('taskgroup')
 {extendOnClass} = require('extendonclass')
-debug = ->
+debug = if false then console.log else ->
 
 class Chainy
 	@extend: extendOnClass
@@ -13,11 +13,12 @@ class Chainy
 		@data = null
 
 		@runner = TaskGroup.create(opts).run().on 'complete', (err) ->
-			console.log('error:', err)  if err
+			console.log('error:', err.stack, '\n', err)  if err
 
 		@
 
-	fork: (opts) ->
+	fork: (opts={}) ->
+		#opts.parent ?= opts.runner
 		_ = Chainy.create(opts)
 		_.parent = @
 		_.data = JSON.parse JSON.stringify @data
@@ -130,13 +131,16 @@ Chainy.addPlugin 'log', ->
 	console.log @data
 	@
 
-Chainy.addPlugin 'request', (method, next) ->
+Chainy.addPlugin 'request', (opts={}, next) ->
 	debug 'executing plugin: request', @data, @runner.config.name
+	if typeof opts in ['function','string']
+		opts = {url:opts}
+	opts.cache = 'preferred'
 	me = @
-	feedr = require('feedr').create(cache: 'preferred')
+	feedr = require('feedr').create(opts)
 	@fork()
 		.map (item, complete) ->
-			url = method(item)
+			url = opts.url?(item) or opts.url
 			feedr.readFeed({url, parse:'json'}, complete)
 		.fn (result) ->
 			me.data = result

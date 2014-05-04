@@ -15,4 +15,4 @@ out/
 # =====================================
 # CUSTOM MODIFICATIONS
 
-# None
+out.geojson
