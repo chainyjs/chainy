@@ -96,6 +96,7 @@ Things to know about creating plugins:
 		});
 	});
 	Chainy.create().set([1,2,3]).x(10).log() // [10, 20, 30]
+	```
 
 4. You can even make your plugin asynchronous by accepting an unspecified by the caller last argument called `next`:
 
