@@ -14,15 +14,19 @@ class Chainy
 	# Buid our chain while passing some options to the taskgroup constructor for our runner
 	constructor: (opts) ->
 		@data = null
-
-		@runner = TaskGroup.create(opts).run().on 'complete', (err) ->
-			console.log('error:', err.stack, '\n', err)  if err
-
+		@runner = TaskGroup.create(opts).run()
+		@runner.once('complete', @defaultCompletionHandler)
 		@
 
-	# Fork the chain
+	# By default throw the error if present if no other completion callback has been set
+	defaultCompletionHandler: (err) ->
+		console.log(err.stack or err)
+		throw err  if err
+		@
+
+	# Clone the chain
 	# Does a deep clone of the data into a new chain and returns it
-	fork: (opts={}) ->
+	clone: (opts={}) ->
 		_ = Chainy.create(opts)
 		_.parent = @
 		_.data = JSON.parse JSON.stringify @data
@@ -39,32 +43,42 @@ class Chainy
 	# next(err, data)
 	done: (callback) ->
 		me = @
-		@once 'complete', (err) ->
-			return callback.apply(me, [err, me.data])
+		@runner
+			.removeListener('complete', @defaultCompletionHandler)
+			.once 'complete', (err) ->
+				return callback.apply(me, [err, me.data])
 		@
 
 	# Helper to help javascript users extend this class
 	@extend: extendOnClass
 
 	# Helper to create a new chainy instance
-	@create: (opts) -> new Chainy(opts)
+	@create: (opts) -> new @(opts)
+
+	# Helper to see if we have a plugin
+	@hasPlugin: (name) ->
+		return (@prototype or @)[name]?
+	hasPlugin: @hasPlugin
 
 	# Helper to add a plugin to this class
 	@addPlugin: (name, method) ->
-		@::[name] = (args...) ->
-			debug 'running plugin:', name, @data, @runner.config.name
+		(@prototype or @)[name] = (args...) ->
 			context = @
 			task = Task.create({name, args, method, context})
 			@runner.addTask(task)
 			@
 		@
+	addPlugin: @addPlugin
 
 	# Require Plugins
 	@require: (plugins) ->
 		me = @
 		plugins = [plugins]  unless Array.isArray(plugins)
 		plugins.forEach (pluginName) ->
-			possiblePluginPath = __dirname+'/plugins/'+pluginName.toLowerCase()
+			# Continue if the plugin is already attached
+			return true  if me.hasPlugin(pluginName) is true
+
+			possiblePluginPath = __dirname+'/plugins/'+pluginName.toLowerCase()+'.js'
 
 			if require('fs').existsSync(possiblePluginPath)
 				plugin = require(possiblePluginPath)
@@ -74,8 +88,9 @@ class Chainy
 			if plugin.addToChainy?
 				plugin.addToChainy(me)
 			else
-				me.addPlugin(pluginName, method)
+				me.addPlugin(pluginName, plugin)
 		@
+	require: @require
 
 
 module.exports = Chainy

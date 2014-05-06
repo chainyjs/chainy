@@ -9,8 +9,9 @@ Chainy.create().set(1)
 	}).log()  // 1
 ```
 ###
+{Task} = require('taskgroup')
 module.exports = (callback, next) ->
-	task = new Task(
+	task = Task.create(
 		name: "task for chain"
 		context: @
 		method: callback

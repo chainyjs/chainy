@@ -10,13 +10,14 @@ Chainy.create().set(1)
 	}).log()  // 5
 ```
 ###
+{Task} = require('taskgroup')
 module.exports = (callback, next) ->
 	me = @
-	task = new Task(
+	task = Task.create(
 		name: "task for chain"
 		context: @
 		method: callback
-		args: [value]
+		args: [@data]
 		next: (err, value) ->
 			return next(err)  if err
 			me.data = value

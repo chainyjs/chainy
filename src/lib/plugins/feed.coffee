@@ -6,12 +6,12 @@ module.exports = (opts={}, next) ->
 	me = @
 	feedr = require('feedr').create(opts)
 
-	@fork()
+	@clone().require(['map', 'done', 'log'])
 		.map (item, complete) ->
 			url = opts.url?(item) or opts.url
 			feedr.readFeed({url, parse:'json'}, complete)
-		.task (result) ->
+		.done (err, result) ->
 			me.data = result
-			next()
+			return next(err)
 
 	@

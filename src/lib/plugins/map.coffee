@@ -35,16 +35,16 @@ Chainy.create().set([1,2,3])
 	}).log()  // [10, 20, 30]
 ```
 ###
+{TaskGroup, Task} = require('taskgroup')
 module.exports = (iterator, next) ->
 	me = @
 	data = @data
 
 	tasks = TaskGroup.create('map iterator group').once 'complete', (err, result) ->
-		debug 'all map iterators finished'
-		next(err)
+		return next(err)
 
 	data.forEach (value, key) ->
-		task = new Task(
+		task = Task.create(
 			name: "map iterator for #{key}"
 			method: iterator
 			args: [value]

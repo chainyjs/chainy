@@ -1,4 +1,5 @@
-var Chainy = require('./');
+var Chainy = require('./').extend({})
+	.require(['add', 'feed', 'flatten', 'count', 'removeDuplicates', 'hasField', 'map', 'done', 'swap', 'pipe', 'log']);
 
 Chainy.create()
 	.add(['bevry','browserstate','ideashare','interconnectapp','docpad'])
@@ -30,8 +31,8 @@ Chainy.create()
 				}
 				return geo;
 			})
-			.fn(function(){
-				complete(null, user);
+			.done(function(err){
+				complete(err, user);
 			});
 	})
 
