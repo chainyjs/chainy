@@ -64,4 +64,12 @@ Chainy.create()
 
 	.pipe(
 		require('fs').createWriteStream('./out.geojson')
-	);
+	)
+
+	.done(function(err, result){
+		if ( err ) {
+			console.log(err.stack || err);
+		} else {
+			console.log('completed successfully without errors');
+		}
+	});
