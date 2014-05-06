@@ -3,7 +3,7 @@ var Chainy = require('./');
 Chainy.create()
 	.add(['bevry','browserstate','ideashare','interconnectapp','docpad'])
 
-	.request(function(org){
+	.feed(function(org){
 		return "https://api.github.com/orgs/"+org+"/public_members";
 	})
 
@@ -11,7 +11,7 @@ Chainy.create()
 
 	.removeDuplicates('id').count()
 
-	.request(function(user){
+	.feed(function(user){
 		return user.url;
 	})
 
@@ -20,7 +20,7 @@ Chainy.create()
 	.map(function(user, complete){
 		Chainy.create()
 			.add([user])
-			.request(function(user){
+			.feed(function(user){
 				return "https://api.tiles.mapbox.com/v3/examples.map-zr0njcqy/geocode/"+user.location+".json";
 			})
 			.map(function(geo){
@@ -50,14 +50,14 @@ Chainy.create()
 		};
 	})
 
-	.replace(function(data){
+	.swap(function(data){
 		return {
 			type: 'FeatureCollection',
 			features: data
 		};
 	})
 
-	.replace(function(data){
+	.swap(function(data){
 		return JSON.stringify(data, null, '\t');
 	})
 

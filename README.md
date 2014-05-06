@@ -41,9 +41,82 @@ Perhaps the most awesome way of interacting with data using a chainable API
 
 ## Usage
 
-### Introduction Guide & Usage Examples
+### Basics
 
-### Technical API
+``` javascript
+var MyChainy = require('chainy').extend().require(['set', 'add', 'swap', 'map']);
+var chainyInstance = new MyChainy();
+```
+
+### Plugins
+
+Plugins are injected into the Chainy prototype using the `Chainy.addPlugin(name, method)` method:
+
+- `name` is a string for the key that the plugin is inserted at, e.g. `Chainy.addPlugin('hello', function(){return 'world';})` has the plugin injected at `Chainy.prototype.hello`, making it availably via `chainyInstance.hello()`
+
+- `method` is a synchronous or asynchronous method that you defined that will perform the action of your plugin
+
+
+You can also use `Chainy.require(arrayOfPlugins)` to require bundled plugins with chainy, or to commonjs require an external plugin with the prefix`chainy-`. For example, running `Chainy.require(['add', 'hello'])` will require the bundled add plugin and the external plugin with the package name `chainy-hello`.
+
+
+To avoid polluting the global Chainy prototype with your plugins, it is recommended that you use `Chainy.extend()` to create a local subclass of chainy that you can inject plugins into safely without polluting the global Chainy prototype:
+
+```
+var Chainy = require('chainy').extend().require(['add', 'set', 'map'])
+```
+
+
+Things to know about creating plugins:
+
+1. The context (what `this` means) of the plugin method is set to the chain that the plugin is executing on, e.g.
+
+	``` javascript
+	chainyInstance.hello()
+	// the context of hello's plugin method when executed will be that of `chainyInstance`
+	```
+
+2. This context is important, as your plugin will use it to apply the changes of the data back to the chain:
+
+	``` javascript
+	Chainy.addPlugin('x5', function(){
+		this.data = this.data.map(function(value){
+			return value*5;
+		});
+	});
+	Chainy.create().set([1,2,3]).x5().log() // [5, 10, 15]
+	```
+
+3. You can also accept arguments in your plugin:
+
+	``` javascript
+	Chainy.addPlugin('x', function(n){
+		this.data = this.data.map(function(value){
+			return value*n;
+		});
+	});
+	Chainy.create().set([1,2,3]).x(10).log() // [10, 20, 30]
+
+4. You can even make your plugin asynchronous by accepting an unspecified by the caller last argument called `next`:
+
+	``` javascript
+	Chainy.addPlugin('download', function(url, next){
+		var chainyInstance = this;
+		require('request')(url, function(err, response, body){
+			if ( err ) {
+				return next(err);
+			}
+			else {
+				chainyInstance.data = body;
+				return next();
+			}
+		});
+	});
+	Chainy.create().download('http://some.url').log() // outputs whatever http://some.url pointed to
+	```
+
+5. Plugin methods aren't fired directly, instead they are fired as tasks in the taskgroup runner of the chain. This allows tasks to be executed serially (one after the other) as well as safe error handling if a task fails, the following tasks will not execute.
+
 
 
 <!-- HISTORY/ -->
