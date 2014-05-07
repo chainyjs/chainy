@@ -15,4 +15,4 @@ out/
 # =====================================
 # CUSTOM MODIFICATIONS
 
-out.geojson
+examples/out*
