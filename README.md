@@ -42,7 +42,7 @@ Perhaps the most awesome way of interacting with data using a chainable API
 ## Usage
 
 ``` javascript
-var MyChainy = require('chainy').extend().require(['set', 'add', 'swap', 'map']);
+var MyChainy = require('chainy').extend().require(['set', 'swap', 'map']);
 var chainyInstance = new MyChainy();
 ```
 
