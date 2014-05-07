@@ -2,7 +2,6 @@
 var Chainy = require('../').extend({}).require(['loadFiles', 'writeFiles']);
 
 Chainy.create()
-	.loadFiles('src/documents')
 	.addPlugin('coffeekupFiles', function(opts, next){
 		Chainy.create().require(['set', 'query', 'map'])
 			.set(this.data)
@@ -17,5 +16,6 @@ Chainy.create()
 			})
 			.done(next);
 	})
+	.loadFiles('src/documents')
 	.coffeekupFiles()
 	.writeFiles();
