@@ -1,30 +1,31 @@
 var Chainy = require('./').extend({})
-	.require(['add', 'feed', 'flatten', 'count', 'removeDuplicates', 'hasField', 'map', 'done', 'swap', 'pipe', 'log']);
+	.require(['set', 'feed', 'flatten', 'count', 'uniq', 'hasField', 'map', 'done', 'swap', 'pipe', 'log']);
 
 Chainy.create()
-	.add(['bevry','browserstate','ideashare','interconnectapp','docpad'])
+	.set(['bevry','browserstate','ideashare','interconnectapp','docpad'])
 
-	.feed(function(org){
-		return "https://api.github.com/orgs/"+org+"/public_members";
+	.map(function(org, complete){
+		Chainy.create()
+			.feed("https://api.github.com/orgs/"+org+"/public_members")
+			.done(complete);
 	})
 
 	.flatten().count()
 
-	.removeDuplicates('id').count()
+	.uniq('id').count()
 
-	.feed(function(user){
-		return user.url;
+	.map(function(user, complete){
+		Chainy.create()
+			.feed(user.url)
+			.done(complete);
 	})
 
 	.hasField('location').count()
 
 	.map(function(user, complete){
 		Chainy.create()
-			.add([user])
-			.feed(function(user){
-				return "https://api.tiles.mapbox.com/v3/examples.map-zr0njcqy/geocode/"+user.location+".json";
-			})
-			.map(function(geo){
+			.feed("https://api.tiles.mapbox.com/v3/examples.map-zr0njcqy/geocode/"+user.location+".json")
+			.swap(function(geo){
 				if ( geo.results && geo.results[0] && geo.results[0][0] ) {
 					var result = geo.results[0][0];
 					user.coordinates = [result.lon, result.lat];

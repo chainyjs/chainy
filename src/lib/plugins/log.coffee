@@ -1,3 +1,3 @@
 module.exports = ->
-	console.log @data
+	console.log(@data)
 	@

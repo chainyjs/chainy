@@ -1,17 +1,15 @@
+feedr = require('feedr').create()
 module.exports = (opts={}, next) ->
-	if typeof opts in ['function','string']
-		opts = {url:opts}
-	opts.cache = 'preferred'
-
 	me = @
-	feedr = require('feedr').create(opts)
 
-	@clone().require(['map', 'done', 'log'])
-		.map (item, complete) ->
-			url = opts.url?(item) or opts.url
-			feedr.readFeed({url, parse:'json'}, complete)
-		.done (err, result) ->
-			me.data = result
-			return next(err)
+	opts = {url: opts}  if typeof opts in ['string', 'function']
+	opts.url = opts.url?(@data) or opts.url
+	opts.cache ?= 'preferred'
+	opts.parse ?= 'json'
+
+	feedr.readFeed opts, (err, result) ->
+		return next(err)  if err
+		me.data = result
+		return next()
 
 	@
