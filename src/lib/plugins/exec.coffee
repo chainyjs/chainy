@@ -1,3 +1,12 @@
+###
+Exec Plugin
+Sets the chain data as the output of an executed script
+
+``` javascript
+Chainy.create()
+	.exec('echo -n hello world').log()  // "hello world"
+```
+###
 safeps = require('safeps')
 module.exports = (command, opts={}, next) ->
 	me = @

@@ -1,2 +1,2 @@
-for pluginName in ['uniq']
+for pluginName in ['set', 'exec', 'uniq']
 	require('./plugins/'+pluginName+'-test')
