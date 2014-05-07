@@ -112,7 +112,17 @@ Things to know about creating plugins:
 	// notice how the user only provides the `url` argument, chainy provides the `next` argument
 	```
 
-5. Plugin methods aren't fired directly, instead they are fired as tasks in the taskgroup runner of the chain. This allows tasks to be executed serially (one after the other) as well as safe error handling if a task fails, the following tasks will not execute.
+5. Plugin methods aren't fired directly, instead they are fired as tasks in the taskgroup runner of the chain. This allows tasks to be executed serially (one after the other) as well as safe error handling if a task fails (the chain stop executing more tasks and will exit). You can safely handle errors like so:
+
+	``` javascript
+	Chainy.addPlugin('oops', function(){
+		throw new Error('something went wrong!');
+	});
+	Chainy.create().oops().done(function(err, chainData}){
+		if ( err )  console.log('error:', err.stack or err);
+		console.log('data:', chainData);
+	});
+	```
 
 ### Available Plugins
 
