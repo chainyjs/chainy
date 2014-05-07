@@ -65,7 +65,7 @@ Plugins are injected into the Chainy prototype using the `Chainy.addPlugin(name,
 - `method` is a synchronous or asynchronous method that you defined that will perform the action of your plugin
 
 
-You can also use `Chainy.require(arrayOfPlugins)` to require bundled plugins with chainy, or to commonjs require an external plugin with the prefix`chainy-`. For example, running `Chainy.require(['add', 'hello'])` will require the bundled add plugin and the external plugin with the package name `chainy-hello`.
+You can also use `Chainy.require(arrayOfPlugins)` to require bundled plugins with chainy, or to commonjs require an external plugin with the prefix`chainy-`. For example, running `Chainy.require(['set', 'hello'])` will require the bundled add plugin and the external plugin with the package name `chainy-hello`.
 
 
 To avoid polluting the global Chainy prototype with your plugins, it is recommended that you use `Chainy.extend()` to create a local subclass of chainy that you can inject plugins into safely without polluting the global Chainy prototype:
