@@ -44,13 +44,25 @@ class Chainy
 	# next(err, data)
 	done: (callback) ->
 		me = @
+
+		handler = (err) ->
+			# ensure the done handler is ever only fired once and once only regardless of which event fires
+			me.runner
+				.removeListener('error', handler)
+				.removeListener('complete', handler)
+
+			# fire our user handler
+			return callback.apply(me, [err, me.data])
+
 		@runner
+			# remove the default handler
 			.removeListener('error', @defaultErrorHandler)
 			.removeListener('complete', @defaultErrorHandler)
-			.once 'error', (err) ->
-				return callback.apply(me, [err, me.data])
-			.once 'complete', (err) ->
-				return callback.apply(me, [err, me.data])
+
+			# add our custom handler
+			.on('error', handler)
+			.on('complete', handler)
+
 		@
 
 	# Helper to help javascript users extend this class
