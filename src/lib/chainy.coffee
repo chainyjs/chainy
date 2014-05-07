@@ -25,14 +25,6 @@ class Chainy
 		throw err  if err
 		@
 
-	# Clone the chain
-	# Does a deep clone of the data into a new chain and returns it
-	clone: (opts={}) ->
-		_ = Chainy.create(opts)
-		_.parent = @
-		_.data = JSON.parse JSON.stringify @data
-		return _
-
 	# Apply a listener to the runner
 	on: (args...) ->
 		@runner.on.apply(@runner, args)
@@ -70,6 +62,17 @@ class Chainy
 
 	# Helper to create a new chainy instance
 	@create: (opts) -> new @(opts)
+	create: (opts) ->
+		_ = Chainy.create(opts)
+		_.parent = @
+		return _
+
+	# Clone the chain
+	# Does a deep clone of the data into a new chain and returns it
+	clone: (opts={}) ->
+		_ = @create(opts)
+		_.data = JSON.parse JSON.stringify @data
+		return _
 
 	# Helper to see if we have a plugin
 	@hasPlugin: (name) ->

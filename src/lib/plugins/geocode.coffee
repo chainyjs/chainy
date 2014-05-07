@@ -1,5 +1,5 @@
 modules.exports = `function(next){
-	this.clone().require(['feed', 'swap'])
+	this.create().require(['feed', 'swap'])
 		.feed("https://api.tiles.mapbox.com/v3/examples.map-zr0njcqy/geocode/"+this.data+".json")
 		.swap(function(geo){
 			if ( geo.results && geo.results[0] && geo.results[0][0] ) {
