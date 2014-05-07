@@ -46,6 +46,16 @@ var MyChainy = require('chainy').extend().require(['set', 'add', 'swap', 'map'])
 var chainyInstance = new MyChainy();
 ```
 
+### Example Usage
+
+[See the `examples` directory](https://github.com/bevry/chainy/blob/master/examples#files)
+
+
+### Available Plugins
+
+[See the `src/lib/plugins` directory](https://github.com/bevry/chainy/blob/master/src/lib/plugins#files)
+
+
 ### Understanding Plugins
 
 Plugins are injected into the Chainy prototype using the `Chainy.addPlugin(name, method)` method:
@@ -123,14 +133,6 @@ Things to know about creating plugins:
 		console.log('data:', chainData);
 	});
 	```
-
-### Available Plugins
-
-[See the `src/lib/plugins` directory](https://github.com/bevry/chainy/blob/master/src/lib/plugins#files)
-
-### Example Usage
-
-[See the `examples` directory](https://github.com/bevry/chainy/blob/master/examples#files)
 
 
 <!-- HISTORY/ -->
