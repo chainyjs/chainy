@@ -62,13 +62,16 @@ class Chainy
 
 	# Helper to create a new chainy instance
 	@create: (opts) -> new @(opts)
+
+	# Create a child of this chain
+	# @TODO: Should the child inherit the parents plugins?
 	create: (opts) ->
 		_ = Chainy.create(opts)
 		_.parent = @
 		return _
 
 	# Clone the chain
-	# Does a deep clone of the data into a new chain and returns it
+	# Creates a child of this chain and deep clones the data into it
 	clone: (opts={}) ->
 		_ = @create(opts)
 		_.data = JSON.parse JSON.stringify @data

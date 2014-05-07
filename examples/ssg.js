@@ -3,11 +3,11 @@ var Chainy = require('../').extend().require(['loadFiles', 'writeFiles']);
 
 Chainy.create()
 	.addPlugin('coffeekupFiles', function(opts, next){
-		Chainy.create().require(['set', 'query', 'map'])
+		this.create().require(['set', 'query', 'map'])
 			.set(this.data)
 			.query({path: {$grep: 'src/documents/**/*.html.coffee*'}})
 			.map(function(file, complete){
-				Chainy.create().require(['set', 'coffeekup', 'done'])
+				this.create().require(['set', 'coffeekup', 'done'])
 					.set(file.content)
 					.coffeekup(opts)
 					.done(function(err, result){

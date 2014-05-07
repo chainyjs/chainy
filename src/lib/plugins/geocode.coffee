@@ -1,4 +1,4 @@
-modules.exports = `function(next){
+module.exports = `function(next){
 	this.create().require(['feed', 'swap'])
 		.feed("https://api.tiles.mapbox.com/v3/examples.map-zr0njcqy/geocode/"+this.data+".json")
 		.swap(function(geo){

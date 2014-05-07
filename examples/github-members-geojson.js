@@ -34,9 +34,9 @@ Chainy.create()
 			.set(user.location)
 			.geocode()
 			.done(function(err, result){
-				if (err)  return next(err, user);
+				if (err)  return complete(err, user);
 				user.coordinates = result;
-				return next(null, user);
+				return complete(null, user);
 			});
 	})
 

@@ -39,20 +39,21 @@ Chainy.create().set([1,2,3])
 ###
 {TaskGroup, Task} = require('taskgroup')
 module.exports = (iterator, opts={}, next) ->
-	me = @
+	chain = @
 
 	opts.name ?= 'map iterator group'
 	opts.concurrency ?= 0
 	tasks = TaskGroup.create(opts).once 'complete', (err, result) ->
 		return next(err)
 
-	me.data.forEach (value, key) ->
+	chain.data.forEach (value, key) ->
 		task = Task.create(
 			name: "map iterator for #{key}"
 			method: iterator
+			context: chain
 			args: [value]
 			next: (err, result) ->
-				me.data[key] = result  unless err
+				chain.data[key] = result  unless err
 		)
 		tasks.addTask(task)
 
