@@ -1,6 +1,6 @@
 ###
 Count Plugin
-Outputs the length of the chainy data
+Outputs the length of the chain data to stdout
 
 ``` javascript
 Chainy.create()
