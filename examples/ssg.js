@@ -8,7 +8,9 @@ Chainy.create()
 			.query({path: {$grep: 'src/documents/**/*.html.coffee*'}})
 			.map(function(file, complete){
 				Chainy.create().require(['set', 'coffeekup', 'done'])
-					.set(file.content).coffeekup(opts).done(function(err, result){
+					.set(file.content)
+					.coffeekup(opts)
+					.done(function(err, result){
 						if (err)  return complete(err, file);
 						file.content = result;
 						return complete(null, file);
