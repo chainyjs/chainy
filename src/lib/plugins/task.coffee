@@ -13,8 +13,8 @@ Chainy.create().set(1)
 module.exports = (callback, next) ->
 	task = Task.create(
 		name: "task for chain"
-		context: @
 		method: callback
+		context: @
 		args: [value]
 		next: next
 	)

@@ -91,6 +91,9 @@ class Chainy
 	@addPlugin: (name, method) ->
 		(@prototype or @)[name] = (args...) ->
 			context = @
+			# ^ We use the context option to perform a delayed bind
+			# Doing a straight bind `method = method.bind(@)` causes the context to get messed up
+			# I have absolutely no idea why this occurs, it just is
 			task = Task.create({name, args, method, context})
 			@runner.addTask(task)
 			@

@@ -9,13 +9,13 @@ Chainy.create()
 ###
 safeps = require('safeps')
 module.exports = (command, opts={}, next) ->
-	me = @
+	chain = @
 
 	command = command?(@data) or command
 
 	safeps.spawn command, opts, (err, result) ->
 		return next(err)  if err
-		me.data = result
+		chain.data = result
 		return next()
 
 	@

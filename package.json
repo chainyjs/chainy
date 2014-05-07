@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "extendonclass": "~1.0.1",
-    "taskgroup": "~3.3.9",
+    "taskgroup": "~3.4.0",
     "lodash.flatten": "~2.4.1",
     "feedr": "~2.8.0",
     "safeps": "~2.2.11"

@@ -13,7 +13,7 @@ Chainy.create()
 ###
 feedr = require('feedr').create()
 module.exports = (opts={}, next) ->
-	me = @
+	chain = @
 
 	opts = {url: opts}  if typeof opts in ['string', 'function']
 	opts.url = opts.url?(@data) or opts.url
@@ -22,7 +22,7 @@ module.exports = (opts={}, next) ->
 
 	feedr.readFeed opts, (err, result) ->
 		return next(err)  if err
-		me.data = result
+		chain.data = result
 		return next()
 
 	@
