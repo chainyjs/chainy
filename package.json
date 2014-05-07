@@ -50,7 +50,7 @@
     "taskgroup": "~3.3.9",
     "lodash.flatten": "~2.4.1",
     "feedr": "~2.8.0",
-    "safeps": "^2.2.11"
+    "safeps": "~2.2.11"
   },
   "devDependencies": {
     "coffee-script": "~1.7.1",
