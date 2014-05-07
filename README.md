@@ -102,13 +102,9 @@ Things to know about creating plugins:
 	Chainy.addPlugin('download', function(url, next){
 		var chainyInstance = this;
 		require('request')(url, function(err, response, body){
-			if ( err ) {
-				return next(err);
-			}
-			else {
-				chainyInstance.data = body;
-				return next();
-			}
+			if ( err )  return next(err);
+			chainyInstance.data = body;
+			return next();
 		});
 	});
 	Chainy.create().download('http://some.url').log() // outputs whatever http://some.url pointed to
