@@ -1,4 +1,4 @@
-var Chainy = require('../').extend({})
+var Chainy = require('../').extend()
 	.require(['set', 'feed', 'flatten', 'count', 'uniq', 'hasField', 'map', 'done', 'swap', 'pipe', 'log']);
 
 Chainy.create()

@@ -1,5 +1,5 @@
 // Example is conceptual at this stage
-var Chainy = require('../').extend({}).require(['loadFiles', 'writeFiles']);
+var Chainy = require('../').extend().require(['loadFiles', 'writeFiles']);
 
 Chainy.create()
 	.addPlugin('coffeekupFiles', function(opts, next){
