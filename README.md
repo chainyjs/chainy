@@ -67,14 +67,15 @@ var Chainy = require('chainy').extend().require(['add', 'set', 'map'])
 
 Things to know about creating plugins:
 
-1. The context (what `this` means) of the plugin method is set to the chain that the plugin is executing on, e.g.
+1. The context (what `this` means) of the plugin method is set to the chain that the plugin is executing on
 
 	``` javascript
+	// when doing the following
 	chainyInstance.hello()
 	// the context of hello's plugin method when executed will be that of `chainyInstance`
 	```
 
-2. This context is important, as your plugin will use it to apply the changes of the data back to the chain:
+2. This context is important, as your plugin will use it to apply the changes of the data back to the chain
 
 	``` javascript
 	Chainy.addPlugin('x5', function(){
@@ -85,7 +86,7 @@ Things to know about creating plugins:
 	Chainy.create().set([1,2,3]).x5().log() // [5, 10, 15]
 	```
 
-3. You can accept arguments in your plugin:
+3. You can accept arguments in your plugin
 
 	``` javascript
 	Chainy.addPlugin('x', function(n){
@@ -96,7 +97,7 @@ Things to know about creating plugins:
 	Chainy.create().set([1,2,3]).x(10).log() // [10, 20, 30]
 	```
 
-4. You can make your plugin asynchronous by accepting an unspecified by the caller last argument called `next`:
+4. You can make your plugin asynchronous by accepting an unspecified by the caller last argument called `next`
 
 	``` javascript
 	Chainy.addPlugin('download', function(url, next){
