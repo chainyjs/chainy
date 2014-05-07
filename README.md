@@ -109,7 +109,7 @@ Things to know about creating plugins:
 		});
 	});
 	Chainy.create().download('http://some.url').log() // outputs whatever http://some.url pointed to
-	// notice how the user only provides the url argument, chainy provides the next argument
+	// notice how the user only provides the `url` argument, chainy provides the `next` argument
 	```
 
 5. Plugin methods aren't fired directly, instead they are fired as tasks in the taskgroup runner of the chain. This allows tasks to be executed serially (one after the other) as well as safe error handling if a task fails, the following tasks will not execute.
