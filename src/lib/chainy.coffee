@@ -15,8 +15,8 @@ class Chainy
 	constructor: (opts) ->
 		@data = null
 		@runner = TaskGroup.create(opts).run()
-		@runner.once('error', @defaultErrorHandler)
-		@runner.once('complete', @defaultErrorHandler)
+			.once('error', @defaultErrorHandler)
+			.once('complete', @defaultErrorHandler)
 		@
 
 	# By default throw the error if present if no other completion callback has been set
@@ -30,6 +30,11 @@ class Chainy
 		@runner.on.apply(@runner, args)
 		@
 
+	# Remove a listener from the runner
+	off: (args...) ->
+		@runner.removeListener.apply(@runner, args)
+		@
+
 	# Fire the passed callback once all tasks have fired on the chain
 	# or when an error occurs that haults execution of the rest of the tasks
 	# note: does not catch uncaught errors, for that, use .on('error', function(err){})
@@ -39,17 +44,17 @@ class Chainy
 
 		handler = (err) ->
 			# ensure the done handler is ever only fired once and once only regardless of which event fires
-			chain.runner
-				.removeListener('error', handler)
-				.removeListener('complete', handler)
+			chain
+				.off('error', handler)
+				.off('complete', handler)
 
 			# fire our user handler
 			return callback.apply(chain, [err, chain.data])
 
-		@runner
+		chain
 			# remove the default handler
-			.removeListener('error', @defaultErrorHandler)
-			.removeListener('complete', @defaultErrorHandler)
+			.off('error', @defaultErrorHandler)
+			.off('complete', @defaultErrorHandler)
 
 			# add our custom handler
 			.on('error', handler)
