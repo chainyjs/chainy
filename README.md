@@ -85,7 +85,7 @@ Things to know about creating plugins:
 	Chainy.create().set([1,2,3]).x5().log() // [5, 10, 15]
 	```
 
-3. You can also accept arguments in your plugin:
+3. You can accept arguments in your plugin:
 
 	``` javascript
 	Chainy.addPlugin('x', function(n){
@@ -96,7 +96,7 @@ Things to know about creating plugins:
 	Chainy.create().set([1,2,3]).x(10).log() // [10, 20, 30]
 	```
 
-4. You can even make your plugin asynchronous by accepting an unspecified by the caller last argument called `next`:
+4. You can make your plugin asynchronous by accepting an unspecified by the caller last argument called `next`:
 
 	``` javascript
 	Chainy.addPlugin('download', function(url, next){
