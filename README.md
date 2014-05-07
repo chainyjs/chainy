@@ -71,7 +71,7 @@ You can also use `Chainy.require(arrayOfPlugins)` to require bundled plugins wit
 To avoid polluting the global Chainy prototype with your plugins, it is recommended that you use `Chainy.extend()` to create a local subclass of chainy that you can inject plugins into safely without polluting the global Chainy prototype:
 
 ``` javascript
-var Chainy = require('chainy').extend().require(['add', 'set', 'map'])
+var Chainy = require('chainy').extend().require(['set', 'log', 'done']);
 ```
 
 
