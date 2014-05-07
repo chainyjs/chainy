@@ -41,14 +41,14 @@ Perhaps the most awesome way of interacting with data using a chainable API
 
 ## Usage
 
-### Basics
+### Using Chainy
 
 ``` javascript
 var MyChainy = require('chainy').extend().require(['set', 'add', 'swap', 'map']);
 var chainyInstance = new MyChainy();
 ```
 
-### Plugins
+### Understanding Plugins
 
 Plugins are injected into the Chainy prototype using the `Chainy.addPlugin(name, method)` method:
 
@@ -118,6 +118,13 @@ Things to know about creating plugins:
 
 5. Plugin methods aren't fired directly, instead they are fired as tasks in the taskgroup runner of the chain. This allows tasks to be executed serially (one after the other) as well as safe error handling if a task fails, the following tasks will not execute.
 
+### Available Plugins
+
+[See the `src/lib/plugins` directory](https://github.com/bevry/chainy/blob/master/src/lib/plugins#files)
+
+### Example Usage
+
+[See the `examples` directory](https://github.com/bevry/chainy/blob/master/examples#files)
 
 
 <!-- HISTORY/ -->
