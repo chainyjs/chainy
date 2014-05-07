@@ -15,11 +15,12 @@ class Chainy
 	constructor: (opts) ->
 		@data = null
 		@runner = TaskGroup.create(opts).run()
-		@runner.once('complete', @defaultCompletionHandler)
+		@runner.once('error', @defaultErrorHandler)
+		@runner.once('complete', @defaultErrorHandler)
 		@
 
 	# By default throw the error if present if no other completion callback has been set
-	defaultCompletionHandler: (err) ->
+	defaultErrorHandler: (err) ->
 		console.log(err.stack or err)
 		throw err  if err
 		@
@@ -44,7 +45,10 @@ class Chainy
 	done: (callback) ->
 		me = @
 		@runner
-			.removeListener('complete', @defaultCompletionHandler)
+			.removeListener('error', @defaultErrorHandler)
+			.removeListener('complete', @defaultErrorHandler)
+			.once 'error', (err) ->
+				return callback.apply(me, [err, me.data])
 			.once 'complete', (err) ->
 				return callback.apply(me, [err, me.data])
 		@
