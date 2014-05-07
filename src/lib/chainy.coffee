@@ -35,16 +35,16 @@ class Chainy
 	# note: does not catch uncaught errors, for that, use .on('error', function(err){})
 	# next(err, data)
 	done: (callback) ->
-		me = @
+		chain = @
 
 		handler = (err) ->
 			# ensure the done handler is ever only fired once and once only regardless of which event fires
-			me.runner
+			chain.runner
 				.removeListener('error', handler)
 				.removeListener('complete', handler)
 
 			# fire our user handler
-			return callback.apply(me, [err, me.data])
+			return callback.apply(chain, [err, chain.data])
 
 		@runner
 			# remove the default handler
@@ -64,7 +64,7 @@ class Chainy
 	@create: (opts) -> new @(opts)
 
 	# Create a child of this chain
-	# @TODO: Should the child inherit the parents plugins?
+	# NOTE: This not copy over any plugins loaded on the parent
 	create: (opts) ->
 		_ = Chainy.create(opts)
 		_.parent = @
@@ -77,10 +77,10 @@ class Chainy
 		_.data = JSON.parse JSON.stringify @data
 		return _
 
-	# Helper to see if we have a plugin
-	@hasPlugin: (name) ->
-		return (@prototype or @)[name]?
-	hasPlugin: @hasPlugin
+	# Helper to get a plugin
+	@getPlugin: (name) ->
+		return (@prototype or @)[name]
+	getPlugin: @getPlugin
 
 	# Helper to add a plugin to this class
 	@addPlugin: (name, method) ->
@@ -94,11 +94,11 @@ class Chainy
 
 	# Require Plugins
 	@require: (plugins) ->
-		me = @
+		chain = @
 		plugins = [plugins]  unless Array.isArray(plugins)
 		plugins.forEach (pluginName) ->
 			# Continue if the plugin is already attached
-			return true  if me.hasPlugin(pluginName) is true
+			return true  if chain.getPlugin(pluginName)? is true
 
 			possiblePluginPath = __dirname+'/plugins/'+pluginName.toLowerCase()+'.js'
 
@@ -108,9 +108,9 @@ class Chainy
 				plugin = require('chainy-'+pluginName)
 
 			if plugin.addToChainy?
-				plugin.addToChainy(me)
+				plugin.addToChainy(chain)
 			else
-				me.addPlugin(pluginName, plugin)
+				chain.addPlugin(pluginName, plugin)
 		@
 	require: @require
 
