@@ -60,10 +60,13 @@
     "projectz": "~0.3.11"
   },
   "directories": {
-    "lib": "./out/lib"
+    "lib": "./lib"
   },
   "scripts": {
-    "test": "node ./out/test/chainy-test.js"
+    "test": "node ./test/chainy-test.js"
   },
-  "main": "./out/lib/chainy.js"
+  "main": "./lib/chainy.js",
+  "jshintConfig": {
+    "asi": true
+  }
 }
