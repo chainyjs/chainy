@@ -18,6 +18,8 @@ function(value, complete){
 }
 ```
 
+Iterators are executed in parallel.
+
 The replacement value (or lack thereof) is used to replace the value of the item in the array the iterator was executing for. Be sure to always explicitly specify a replacement value (even if it is the same as the value), as otherwise the item in the array will be replaced with `undefined` and you'll be confused.
 
 Example:
@@ -31,25 +33,26 @@ Chainy.create().set([1,2,3])
 
 	// Asynchronous iterator
 	.map(function(i, next){
-		return next(null, i*2);
+		return next(null, i*10);
 	}).log()  // [10, 20, 30]
 ```
 ###
 {TaskGroup, Task} = require('taskgroup')
-module.exports = (iterator, next) ->
+module.exports = (iterator, opts={}, next) ->
 	me = @
-	data = @data
 
-	tasks = TaskGroup.create('map iterator group').once 'complete', (err, result) ->
+	opts.name ?= 'map iterator group'
+	opts.concurrency ?= 0
+	tasks = TaskGroup.create(opts).once 'complete', (err, result) ->
 		return next(err)
 
-	data.forEach (value, key) ->
+	me.data.forEach (value, key) ->
 		task = Task.create(
 			name: "map iterator for #{key}"
 			method: iterator
 			args: [value]
 			next: (err, result) ->
-				data[key] = result  unless err
+				me.data[key] = result  unless err
 		)
 		tasks.addTask(task)
 
