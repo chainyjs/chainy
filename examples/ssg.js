@@ -14,7 +14,8 @@ Chainy.create()
 						file.content = result;
 						return complete(null, file);
 					});
-			});
+			})
+			.done(next);
 	})
 	.coffeekupFiles()
 	.writeFiles();
