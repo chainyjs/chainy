@@ -1,4 +1,4 @@
 # History
 
-- v1.0.0 October 25, 2013
-	- Blah
+- v0.1.0 May 8, 2014
+	- Initial working release
