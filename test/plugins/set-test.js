@@ -1,26 +1,21 @@
 (function(){
-	# Import
-	{expect} = require('chai')
-	joe = require('joe')
-	Chainy = require('../../../').extend().require(['set', 'uniq', 'done'])
+	// Import
+	var expect = require('chai').expect,
+		joe = require('joe'),
+		Chainy = require('../../').extend().require(['set', 'done'])
 
-	# Task
-	joe.describe 'uniq plugin', (describe,it) ->
-		it "should work without arguments", (next) ->
+	// Test
+	joe.describe('set plugin', function(describe,it){
+		it("should work", function(next){
+			var a = {id:1, name:1}
 			Chainy.create()
-				.set([1, 1, 2, 3])
-				.uniq()
-				.done (err, result) ->
-					return next(err)  if err
-					expect(result).to.deep.equal([1, 2, 3])
+				.set(a)
+				.done(function(err, result){
+					if (err)  return next(err)
+					expect(result).to.deep.equal(a)
+					// ^ shallow comparison, so checks to see if the object is actually the same object
 					return next()
-
-		it "should work with a field argument", (next) ->
-			Chainy.create()
-				.set([{id:1}, {id:1}, {id:2}])
-				.uniq('id')
-				.done (err, result) ->
-					return next(err)  if err
-					expect(result).to.deep.equal([{id:1}, {id:2}])
-					return next()
+				})
+		})
+	})
 })()

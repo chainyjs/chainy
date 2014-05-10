@@ -1,28 +1,35 @@
 (function(){
-	# Import
-	{expect} = require('chai')
-	joe = require('joe')
-	Chainy = require('../../../').extend().require(['set', 'map', 'done'])
+	// Import
+	var expect = require('chai').expect,
+		joe = require('joe'),
+		Chainy = require('../../').extend().require(['set', 'map', 'done'])
 
-	# Task
-	joe.describe 'map plugin', (describe,it) ->
-		it "should work with a synchronous iterator", (next) ->
+	// Test
+	joe.describe('map plugin', function(describe,it){
+		it("should work with a synchronous iterator", function(next){
 			Chainy.create()
 				.set([1,2,3])
-				.map (i) ->
+				.map(function(i){
 					return i*5
-				.done (err, result) ->
-					return next(err)  if err
+				})
+				.done(function(err, result){
+					if (err)  return next(err)
 					expect(result).to.deep.equal([5, 10, 15])
 					return next()
+				})
+		})
 
-		it "should work with an asynchronous iterator", (next) ->
+		it("should work with an asynchronous iterator", function(next){
 			Chainy.create()
 				.set([1,2,3])
-				.map (i, complete) ->
+				.map(function(i, complete){
 					return complete(null, i*10)
-				.done (err, result) ->
-					return next(err)  if err
+				})
+				.done(function(err, result){
+					if (err)  return next(err)
 					expect(result).to.deep.equal([10, 20, 30])
 					return next()
+				})
+		})
+	})
 })()

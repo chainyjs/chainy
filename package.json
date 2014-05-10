@@ -67,6 +67,25 @@
   },
   "main": "./lib/chainy.js",
   "jshintConfig": {
-    "asi": true
+        "asi": true,
+        "boss": true,
+        "browser": true,
+        "eqeqeq": false,
+        "eqnull": true,
+        "evil": true,
+        "expr": true,
+        "laxbreak": true,
+        "newcap": true,
+        "noarg": true,
+        "node": true,
+        "onecase": false,
+        "onevar": false,
+        "regexdash": true,
+        "smarttabs": true,
+        "strict": false,
+        "sub": true,
+        "trailing": true,
+        "undef": true,
+        "wsh": true
   }
 }
