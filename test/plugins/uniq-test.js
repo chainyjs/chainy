@@ -1,11 +1,12 @@
 (function(){
 	// Import
 	var expect = require('chai').expect,
-		joe = require('joe'),
-		Chainy = require('../../').extend().require(['set', 'uniq', 'done'])
+		joe = require('joe')
 
 	// Test
 	joe.describe('uniq plugin', function(describe,it){
+		var Chainy = require('../../').extend().require(['set', 'uniq', 'done'])
+		
 		it("should work without arguments", function(next){
 			Chainy.create()
 				.set([1, 1, 2, 3])

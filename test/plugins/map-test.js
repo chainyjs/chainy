@@ -1,11 +1,12 @@
 (function(){
 	// Import
 	var expect = require('chai').expect,
-		joe = require('joe'),
-		Chainy = require('../../').extend().require(['set', 'map', 'done'])
+		joe = require('joe')
 
 	// Test
 	joe.describe('map plugin', function(describe,it){
+		var Chainy = require('../../').extend().require(['set', 'map', 'done'])
+		
 		it("should work with a synchronous iterator", function(next){
 			Chainy.create()
 				.set([1,2,3])

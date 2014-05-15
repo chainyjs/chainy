@@ -1,11 +1,11 @@
 (function(){
 	// Import
 	var expect = require('chai').expect,
-		joe = require('joe'),
-		Chainy = require('../../').extend().require(['set', 'done'])
+		joe = require('joe')
 
 	// Test
 	joe.describe('set plugin', function(describe,it){
+		var Chainy = require('../../').extend().require(['set', 'done'])
 		it("should work", function(next){
 			var a = {id:1, name:1}
 			Chainy.create()

@@ -1,11 +1,12 @@
 (function(){
 	// Import
 	var expect = require('chai').expect,
-		joe = require('joe'),
-		Chainy = require('../../').extend().require(['set', 'hasField', 'done'])
+		joe = require('joe')
 
 	// Test
 	joe.describe("hasfield plugin", function(describe,it){
+		var Chainy = require('../../').extend().require(['set', 'hasField', 'done'])
+		
 		it("should work", function(next){
 			var a = {id:1, name:1}
 			var b = {name:2}

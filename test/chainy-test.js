@@ -1,14 +1,15 @@
 (function(){
 	// Import
 	var expect = require('chai').expect,
-		joe = require('joe'),
-		Chainy = require('../').extend()
+		joe = require('joe')
 
 	// Test Chainy
 	joe.describe('chainy', function(describe,it){
+		var Chainy = require('../').extend()
+		
 		it("should handle errors gracefully", function(next){
 			Chainy.create()
-				.addPlugin('oops', function(){
+				.addExtension('oops', 'action', function(){
 					throw new Error('deliberate failure')
 				})
 				.oops()

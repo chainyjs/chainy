@@ -1,11 +1,12 @@
 (function(){
 	// Import
 	var expect = require('chai').expect,
-		joe = require('joe'),
-		Chainy = require('../../').extend().require(['exec', 'done'])
+		joe = require('joe')
 
 	// Test
 	joe.describe('exec plugin', function(describe,it){
+		var Chainy = require('../../').extend().require(['exec', 'done'])
+		
 		it("should work", function(next){
 			if ( process.env.TRAVIS ) {
 				console.log('skipping for travis environment')
