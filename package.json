@@ -3,7 +3,7 @@
   "name": "chainy",
   "version": "1.0.0",
   "description": "Perhaps the most awesome way of interacting with data using a chainable API",
-  "homepage": "https://github.com/bevry/chainy",
+  "homepage": "https://github.com/chainyjs/chainy",
   "license": {
     "type": "MIT"
   },
@@ -36,11 +36,11 @@
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
   ],
   "bugs": {
-    "url": "https://github.com/bevry/chainy/issues"
+    "url": "https://github.com/chainyjs/chainy/issues"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/bevry/chainy.git"
+    "url": "http://github.com/chainyjs/chainy.git"
   },
   "engines": {
     "node": ">=0.4"
