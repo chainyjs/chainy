@@ -62,5 +62,6 @@
   "scripts": {
     "test": "node ./test/chainy-test.js"
   },
-  "main": "./lib/chainy.js"
+  "main": "./lib/chainy.js",
+  "browsers": true
 }

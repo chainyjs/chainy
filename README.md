@@ -36,6 +36,15 @@ Perhaps the most awesome way of interacting with data using a chainable API
 - Use: `require('chainy')`
 - Install: `npm install --save chainy`
 
+### [Browserify](http://browserify.org/)
+- Use: `require('chainy')`
+- Install: `npm install --save chainy`
+- CDN URL: `//wzrd.in/bundle/chainy@1.0.0`
+
+### [Ender](http://ender.jit.su/)
+- Use: `require('chainy')`
+- Install: `ender add chainy`
+
 <!-- /INSTALL -->
 
 
