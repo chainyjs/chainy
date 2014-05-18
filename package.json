@@ -1,7 +1,7 @@
 {
   "title": "Chainy",
   "name": "chainy",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Perhaps the most awesome way of interacting with data using a chainable API",
   "homepage": "https://github.com/bevry/chainy",
   "license": {
@@ -65,27 +65,5 @@
   "scripts": {
     "test": "node ./test/chainy-test.js"
   },
-  "main": "./lib/chainy.js",
-  "jshintConfig": {
-        "asi": true,
-        "boss": true,
-        "browser": true,
-        "eqeqeq": false,
-        "eqnull": true,
-        "evil": true,
-        "expr": true,
-        "laxbreak": true,
-        "newcap": true,
-        "noarg": true,
-        "node": true,
-        "onecase": false,
-        "onevar": false,
-        "regexdash": true,
-        "smarttabs": true,
-        "strict": false,
-        "sub": true,
-        "trailing": true,
-        "undef": true,
-        "wsh": true
-  }
+  "main": "./lib/chainy.js"
 }
