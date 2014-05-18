@@ -1,7 +1,7 @@
 {
   "title": "Chainy",
   "name": "chainy",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Perhaps the most awesome way of interacting with data using a chainable API",
   "homepage": "https://github.com/chainyjs/chainy",
   "license": {
@@ -45,11 +45,14 @@
   "engines": {
     "node": ">=0.4"
   },
-  "dependencies": {
-    "extendonclass": "~1.0.1",
-    "taskgroup": "~3.4.0"
+  "peerDependencies": {
+    "chainy-core": "*",
+    "chainy-plugin-autoload": "*"
   },
   "devDependencies": {
+    "chainy-core": "*",
+    "chainy-plugin-autoload": "*",
+    "chainy-plugin-set": "*",
     "coffee-script": "~1.7.1",
     "joe": "~1.4.0",
     "joe-reporter-console": "~1.2.1",

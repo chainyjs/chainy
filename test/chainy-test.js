@@ -26,53 +26,14 @@
 			expect(MyChainy.prototype.test).to.eql(extension)
 		})
 
-		it("should handle errors gracefully", function(next){
+		it("it should have autoloaded the installed set plugin", function(next){
+			var a = {id:1, name:1}
 			Chainy.create()
-				.addExtension('oops', 'action', function(){
-					throw new Error('deliberate failure')
-				})
-				.oops()
-				.done(function(err, chainData){
-					expect(err.message).to.eql('deliberate failure')
-					expect(chainData).to.eql(null)
-					return next()
-				})
-		})
-
-		it("should work well", function(next){
-			Chainy.create()
-				.addExtension('set', 'action', function(data){
-					this.data = data
-				})
-				.set('some data')
-				.done(function(err, chainData){
-					expect(err).to.eql(null)
-					expect(chainData).to.eql('some data')
-					expect(chainData).to.eql(this.data)
-					return next()
-				})
-		})
-
-		it("should inherit parent plugins", function(next){
-			var top = Chainy.subclass()
-				.addExtension('set', 'action', function(data){
-					this.data = data
-				})
-			var parent = top.create()
-				.addExtension('capitalize', 'action', function(){
-					this.data = String(this.data).toUpperCase()
-				})
-			var child = parent.create()
-				.set('some data')
-				.capitalize()
-				.done(function(err, chainData){
-					expect(child.parent, "child parent is the parent chain instance").to.eql(parent)
-					expect(parent.parent, "parent parent doens't exist").to.eql(null)
-					//expect(child.klass, "child klass is the subclass").to.eql(top)
-					//expect(parent.klass, "parent klass is the subclass").to.eql(top)
-					expect(err).to.eql(null)
-					expect(chainData, 'callback data is this.data').to.eql(this.data)
-					expect(chainData, 'data is correct').to.eql('SOME DATA')
+				.set(a)
+				.done(function(err, result){
+					if (err)  return next(err)
+					expect(result).to.deep.equal(a)
+					// ^ shallow comparison, so checks to see if the object is actually the same object
 					return next()
 				})
 		})
