@@ -1,7 +1,7 @@
 {
   "title": "Chainy",
   "name": "chainy",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "Perhaps the most awesome way of interacting with data using a chainable API",
   "homepage": "https://github.com/chainyjs/chainy",
   "license": {
