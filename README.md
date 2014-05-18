@@ -50,7 +50,7 @@ Perhaps the most awesome way of interacting with data using a chainable API
 
 ## Usage
 
-[Find the complete documentation for Chainy at the wiki](https://github.com/bevry/chainy/wiki)
+[Find the complete documentation for Chainy at the wiki](https://github.com/chainyjs/chainy/wiki)
 
 ``` javascript
 // chainy install set map swap
