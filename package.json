@@ -52,7 +52,7 @@
   "devDependencies": {
     "chainy-core": "*",
     "chainy-plugin-autoload": "*",
-    "chainy-plugin-set": "*",
+    "chainy-plugin-flatten": "*",
     "coffee-script": "~1.7.1",
     "joe": "~1.4.0",
     "joe-reporter-console": "~1.2.1",

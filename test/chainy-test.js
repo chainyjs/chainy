@@ -26,14 +26,14 @@
 			expect(MyChainy.prototype.test).to.eql(extension)
 		})
 
-		it("it should have autoloaded the installed set plugin", function(next){
-			var a = {id:1, name:1}
+		it("it should have autoloaded the set plugin", function(next){
+			var a = [1,[2,3]]
 			Chainy.create()
 				.set(a)
+				.flatten()
 				.done(function(err, result){
 					if (err)  return next(err)
-					expect(result).to.deep.equal(a)
-					// ^ shallow comparison, so checks to see if the object is actually the same object
+					expect(result).to.deep.equal([1,2,3])
 					return next()
 				})
 		})
