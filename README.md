@@ -39,7 +39,7 @@ Perhaps the most awesome way of interacting with data using a chainable API
 ### [Browserify](http://browserify.org/)
 - Use: `require('chainy')`
 - Install: `npm install --save chainy`
-- CDN URL: `//wzrd.in/bundle/chainy@0.3.0`
+- CDN URL: `//wzrd.in/bundle/chainy@1.0.0`
 
 ### [Ender](http://ender.jit.su/)
 - Use: `require('chainy')`
@@ -59,7 +59,7 @@ require('chainy').create()
 	.map(function(item, next){
 		return next(null, item.toUpperCase())
 	})
-	.swap(function(item, next){
+	.action(function(item, next){
 		return next(null, item.join(' ')+'!')
 	})
 	.done(function(err, result){
