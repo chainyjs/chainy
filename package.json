@@ -1,7 +1,7 @@
 {
   "title": "Chainy",
   "name": "chainy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Perhaps the most awesome way of interacting with data using a chainable API",
   "homepage": "https://github.com/chainyjs/chainy",
   "license": {
@@ -45,6 +45,7 @@
   "engines": {
     "node": ">=0.4"
   },
+  "dependencies": {},
   "peerDependencies": {
     "chainy-core": "1",
     "chainy-plugin-autoload": "*",
@@ -70,8 +71,5 @@
     "test": "node ./test/chainy-test.js"
   },
   "main": "./lib/chainy.js",
-  "browsers": true,
-  "dependencies": {
-    "chainy-plugin-flatten": "^0.1.0"
-  }
+  "browsers": true
 }

@@ -35,6 +35,8 @@ joe.describe('chainy', function(describe,it){
 			})
 	})
 
+	/*
+	test currently disabled until we figure out how to prevent this from adding flatten to the dependencies in package.json
 	it("it should autoinstall the flatten plugin on node v0.11+", function(next){
 		var a = [1,[2,3]]
 		try {
@@ -55,5 +57,6 @@ joe.describe('chainy', function(describe,it){
 			}
 		}
 	})
+	*/
 
 })

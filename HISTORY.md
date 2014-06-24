@@ -1,5 +1,8 @@
 # History
 
+## v1.0.1 June 24, 2014
+- Removed accidental flatten dependency
+
 ## v1.0.0 June 23, 2014
 - Initial official release
 
