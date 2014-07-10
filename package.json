@@ -1,7 +1,7 @@
 {
   "title": "Chainy",
   "name": "chainy",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Perhaps the most awesome way of interacting with data using a chainable API",
   "homepage": "https://github.com/chainyjs/chainy",
   "license": {
@@ -49,8 +49,7 @@
   "peerDependencies": {
     "chainy-core": "1",
     "chainy-plugin-autoload": "*",
-    "chainy-plugin-autoinstall": "*",
-    "chainy-bundle-common": "*"
+    "chainy-plugin-autoinstall": "*"
   },
   "devDependencies": {
     "chai": "~1.9.1",
@@ -61,7 +60,7 @@
     "coffee-script": "~1.7.1",
     "joe": "~1.5.0",
     "joe-reporter-console": "~1.2.1",
-    "projectz": "~0.3.11",
+    "projectz": "~0.3.15",
     "semver": "^2.3.1"
   },
   "directories": {

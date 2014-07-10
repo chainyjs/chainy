@@ -1,5 +1,8 @@
 # History
 
+## v1.1.0 July 11, 2014
+- Removed common bundle, it should be installed manually
+
 ## v1.0.1 June 24, 2014
 - Removed accidental flatten dependency
 
