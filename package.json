@@ -57,6 +57,7 @@
     "chainy-plugin-autoinstall": "*",
     "chainy-plugin-autoload": "*",
     "chainy-plugin-set": "*",
+    "chainy-plugin-exec": "*",
     "coffee-script": "~1.7.1",
     "joe": "~1.5.0",
     "joe-reporter-console": "~1.2.1",

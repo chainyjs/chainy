@@ -1,7 +1,8 @@
 "use strict";
 // Import
 var expect = require('chai').expect,
-	joe = require('joe')
+	joe = require('joe'),
+	fsUtil = require('fs')
 
 // Test Chainy
 joe.describe('chainy', function(describe,it){
@@ -20,34 +21,38 @@ joe.describe('chainy', function(describe,it){
 
 	it("should pass when attempting to extend a child class", function(){
 		var extension = function(){}
-		var MyChainy = Chainy.subclass().addExtension('test', 'utility', extension)
-		expect(MyChainy.prototype.test).to.eql(extension)
+		var chain = Chainy.subclass()
+			.addExtension('test', 'utility', extension)
+			.create()
+		expect(chain.test).to.eql(extension)
 	})
 
 	it("it should have autoloaded the set plugin", function(next){
 		var a = [1,[2,3]]
 		Chainy.create()
 			.set(a)
-			.done(function(err, result){
-				if (err)  return next(err)
+			.action(function(result){
 				expect(result).to.equal(a)
-				return next()
 			})
+			.done(next)
 	})
 
-	/*
-	test currently disabled until we figure out how to prevent this from adding flatten to the dependencies in package.json
 	it("it should autoinstall the flatten plugin on node v0.11+", function(next){
 		var a = [1,[2,3]]
 		try {
-			Chainy.create().require('flatten')
+			Chainy.create().require('exec flatten')
 				.set(a)
 				.flatten()
-				.done(function(err, result){
-					if (err)  return next(err)
+				.action(function(result){
 					expect(result).to.deep.equal([1,2,3])
-					return next()
 				})
+
+				// remove flatten dependency
+				.set('npm uninstall --save chainy-plugin-flatten')
+				.exec()
+
+				// complete
+				.done(next)
 		} catch ( err ) {
 			if ( require('semver').satisfies(process.version, '>=0.11') === false ) {
 				console.log('error expected as we are on node <0.11')
@@ -57,6 +62,5 @@ joe.describe('chainy', function(describe,it){
 			}
 		}
 	})
-	*/
 
 })
