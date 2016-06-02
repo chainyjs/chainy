@@ -37,6 +37,19 @@ joe.describe('chainy', function(describe,it){
 			.done(next)
 	})
 
+	it('it should handle errors', function(next){
+		var a = [1, 2, 3];
+		Chainy.create().require('map')
+			.set(a)
+			.map(function(item, next) {
+				next(new Error('teh'));
+			})
+			.done(function(err, results) {
+				expect(err.message).to.equal('teh')
+				next()
+			})
+	})
+
 	it("it should autoinstall the flatten plugin on node v0.11+", function(next){
 		var a = [1,[2,3]]
 		try {
